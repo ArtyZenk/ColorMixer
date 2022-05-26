@@ -50,18 +50,21 @@ class ColorMixerViewController: UIViewController {
     private lazy var redValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0.0"
         return label
     }()
     
     private lazy var greenValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = String(redSlider.value)
         return label
     }()
     
     private lazy var blueValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "0.0"
         return label
     }()
     
@@ -75,22 +78,28 @@ class ColorMixerViewController: UIViewController {
     
     private lazy var redSlider: UISlider = {
         let slider = UISlider()
-        slider.value = 25
+        slider.addTarget(self, action: #selector(setColor), for: .valueChanged)
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.value = 0.25
+        slider.minimumTrackTintColor = .red
         return slider
     }()
     
     private lazy var greenSlider: UISlider = {
         let slider = UISlider()
-        slider.value = 45
+        slider.addTarget(self, action: #selector(setColor), for: .valueChanged)
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.value = 0.45
+        slider.minimumTrackTintColor = .green
         return slider
     }()
     
     private lazy var blueSlider: UISlider = {
         let slider = UISlider()
-        slider.value = 55
+        slider.addTarget(self, action: #selector(setColor), for: .valueChanged)
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.value = 0.55
+        slider.minimumTrackTintColor = .blue
         return slider
     }()
     
@@ -116,19 +125,21 @@ class ColorMixerViewController: UIViewController {
         super.viewDidLoad()
         
         setupHierarch()
-        
-        
         setupView()
     }
     
     override func viewDidLayoutSubviews() {
         setupLayout()
+        
+       
     }
 }
 // MARK: - Private methods
 
 extension ColorMixerViewController {
     private func setupHierarch() {
+        view.addSubview(resultView)
+        view.addSubview(parentsStack)
     }
     
     private func setupLayout() {
@@ -156,15 +167,11 @@ extension ColorMixerViewController {
             resultView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
             
             parentsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            parentsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            parentsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            parentsStack.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: -16),
             parentsStack.heightAnchor.constraint(equalToConstant: 350),
-            parentsStack.widthAnchor.constraint(equalToConstant: 400)
-            
-//            parentsStack.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: 16),
-//            parentsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-//            parentsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-//            parentsStack.heightAnchor.constraint(equalToConstant: 400)
-//
+            parentsStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9)
+
             
         ])
         
@@ -172,15 +179,15 @@ extension ColorMixerViewController {
     
     private func setupView() {
         view.backgroundColor = .systemBlue
-        
+        setColor()
+    }
+    
+    @objc private func setColor() {
         resultView.backgroundColor = UIColor(
             red: CGFloat(redSlider.value),
             green: CGFloat(greenSlider.value),
             blue: CGFloat(blueSlider.value),
             alpha: 1
         )
-        
-        view.addSubview(resultView)
-        view.addSubview(parentsStack)
     }
 }
