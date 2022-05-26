@@ -12,64 +12,61 @@ class ColorMixerViewController: UIViewController {
     // MARK: - Elements
     private lazy var resultView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 15
+        view.layer.cornerRadius = Metric.resultViewCornerRadius
         return view
     }()
     
     private lazy var redLabel: UILabel = {
         let label = UILabel()
-        label.text = "Red"
+        label.text = Strings.redLabelText
         return label
     }()
     
     private lazy var greenLabel: UILabel = {
         let label = UILabel()
-        label.text = "Green"
+        label.text = Strings.greenLabelText
         return label
     }()
     
     private lazy var blueLabel: UILabel = {
         let label = UILabel()
-        label.text = "Blue"
+        label.text = Strings.blueLabelText
         return label
     }()
     
     private lazy var titlesStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 20
+        stack.spacing = Metric.titlesStackSpacing
         return stack
     }()
     
     private lazy var redValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.0"
         return label
     }()
     
     private lazy var greenValueLabel: UILabel = {
         let label = UILabel()
-        label.text = String(redSlider.value)
         return label
     }()
     
     private lazy var blueValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "0.0"
         return label
     }()
     
     private lazy var valueStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 20
+        stack.spacing = Metric.valueStackSpacing
         return stack
     }()
     
     private lazy var redSlider: UISlider = {
         let slider = UISlider()
         slider.addTarget(self, action: #selector(setColor), for: .valueChanged)
-        slider.value = 0.25
+        slider.value = Metric.redSliderValue
         slider.minimumTrackTintColor = .red
         return slider
     }()
@@ -77,7 +74,7 @@ class ColorMixerViewController: UIViewController {
     private lazy var greenSlider: UISlider = {
         let slider = UISlider()
         slider.addTarget(self, action: #selector(setColor), for: .valueChanged)
-        slider.value = 0.45
+        slider.value = Metric.greenSliderValue
         slider.minimumTrackTintColor = .green
         return slider
     }()
@@ -85,7 +82,7 @@ class ColorMixerViewController: UIViewController {
     private lazy var blueSlider: UISlider = {
         let slider = UISlider()
         slider.addTarget(self, action: #selector(setColor), for: .valueChanged)
-        slider.value = 0.55
+        slider.value = Metric.blueSliderValue
         slider.minimumTrackTintColor = .blue
         return slider
     }()
@@ -93,15 +90,16 @@ class ColorMixerViewController: UIViewController {
     private lazy var sliderStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 15
+        stack.spacing = Metric.sliderStackSpacing
         return stack
     }()
     
     private lazy var parentsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.spacing = 15
+        stack.spacing = Metric.parentsStackSpacing
         stack.alignment = .center
+        stack.distribution = .fill
         return stack
     }()
     
@@ -165,19 +163,18 @@ extension ColorMixerViewController {
         
         NSLayoutConstraint.activate([
             resultView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            resultView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            resultView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            resultView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            resultView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            resultView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Metric.resultViewTopOfSet),
+            resultView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Metric.resultViewLeadingOfSet),
+            resultView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: Metric.resultViewTrailingOfSet),
+            resultView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Metric.resultViewHeightMultiplier),
             
             parentsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            parentsStack.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: 16),
-            parentsStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3),
-            parentsStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            parentsStack.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: Metric.parentsStackTopOfSet),
+            parentsStack.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: Metric.parentsStackHeightMultiplier),
+            parentsStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: Metric.parentsStackWidthMultiplier),
             
             valueStack.widthAnchor.constraint(equalToConstant: 40)
         ])
-        
     }
     
     private func setupView() {

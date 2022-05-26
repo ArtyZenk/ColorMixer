@@ -12,6 +12,7 @@
 		F3755094283F3DDA0098F5A5 /* ColorMixerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3755093283F3DDA0098F5A5 /* ColorMixerViewController.swift */; };
 		F3755099283F3DDC0098F5A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3755098283F3DDC0098F5A5 /* Assets.xcassets */; };
 		F375509C283F3DDC0098F5A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F375509A283F3DDC0098F5A5 /* LaunchScreen.storyboard */; };
+		F37550A8283F853C0098F5A5 /* Metric.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37550A7283F853C0098F5A5 /* Metric.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F3755098283F3DDC0098F5A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F375509B283F3DDC0098F5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F375509D283F3DDC0098F5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F37550A7283F853C0098F5A5 /* Metric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metric.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,55 @@
 		F375508E283F3DDA0098F5A5 /* ColorMixer */ = {
 			isa = PBXGroup;
 			children = (
+				F37550A5283F73DD0098F5A5 /* Sources */,
+				F37550A6283F73EB0098F5A5 /* Resources */,
+			);
+			path = ColorMixer;
+			sourceTree = "<group>";
+		};
+		F37550A3283F73CC0098F5A5 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				F375508F283F3DDA0098F5A5 /* AppDelegate.swift */,
 				F3755091283F3DDA0098F5A5 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F37550A4283F73D40098F5A5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
 				F3755093283F3DDA0098F5A5 /* ColorMixerViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F37550A5283F73DD0098F5A5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F37550A3283F73CC0098F5A5 /* App */,
+				F37550A4283F73D40098F5A5 /* Scenes */,
+				F37550A9283F85570098F5A5 /* Extension */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F37550A6283F73EB0098F5A5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				F3755098283F3DDC0098F5A5 /* Assets.xcassets */,
 				F375509A283F3DDC0098F5A5 /* LaunchScreen.storyboard */,
 				F375509D283F3DDC0098F5A5 /* Info.plist */,
 			);
-			path = ColorMixer;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F37550A9283F85570098F5A5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				F37550A7283F853C0098F5A5 /* Metric.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +180,7 @@
 				F3755094283F3DDA0098F5A5 /* ColorMixerViewController.swift in Sources */,
 				F3755090283F3DDA0098F5A5 /* AppDelegate.swift in Sources */,
 				F3755092283F3DDA0098F5A5 /* SceneDelegate.swift in Sources */,
+				F37550A8283F853C0098F5A5 /* Metric.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +321,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9DSLGCL4J8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ColorMixer/Info.plist;
+				INFOPLIST_FILE = ColorMixer/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -306,7 +350,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9DSLGCL4J8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ColorMixer/Info.plist;
+				INFOPLIST_FILE = ColorMixer/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
