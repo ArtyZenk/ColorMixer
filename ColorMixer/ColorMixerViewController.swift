@@ -13,7 +13,7 @@ class ColorMixerViewController: UIViewController {
     private lazy var resultView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+//        view.backgroundColor = .red
         view.layer.cornerRadius = 15
         return view
     }()
@@ -75,24 +75,28 @@ class ColorMixerViewController: UIViewController {
     
     private lazy var redSlider: UISlider = {
         let slider = UISlider()
+        slider.value = 25
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
     
     private lazy var greenSlider: UISlider = {
         let slider = UISlider()
+        slider.value = 45
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
     
     private lazy var blueSlider: UISlider = {
         let slider = UISlider()
+        slider.value = 55
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
     
     private lazy var sliderStack: UIStackView = {
         let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.spacing = 20
         return stack
@@ -100,8 +104,10 @@ class ColorMixerViewController: UIViewController {
     
     private lazy var parentsStack: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .vertical
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
         stack.spacing = 20
+        stack.alignment = .center
         return stack
     }()
     
@@ -119,6 +125,7 @@ class ColorMixerViewController: UIViewController {
         setupLayout()
     }
 }
+// MARK: - Private methods
 
 extension ColorMixerViewController {
     private func setupHierarch() {
@@ -144,16 +151,36 @@ extension ColorMixerViewController {
         NSLayoutConstraint.activate([
             resultView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             resultView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            resultView.widthAnchor.constraint(equalToConstant: 300),
-            resultView.heightAnchor.constraint(equalToConstant: 300)
-
+            resultView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            resultView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+            resultView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.2),
+            
+            parentsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            parentsStack.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            parentsStack.heightAnchor.constraint(equalToConstant: 350),
+            parentsStack.widthAnchor.constraint(equalToConstant: 400)
+            
+//            parentsStack.topAnchor.constraint(equalTo: resultView.bottomAnchor, constant: 16),
+//            parentsStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+//            parentsStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
+//            parentsStack.heightAnchor.constraint(equalToConstant: 400)
+//
+            
         ])
         
     }
     
     private func setupView() {
-        view.backgroundColor = .blue
+        view.backgroundColor = .systemBlue
+        
+        resultView.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1
+        )
+        
         view.addSubview(resultView)
-//        view.addSubview(parentsStack)
+        view.addSubview(parentsStack)
     }
 }
