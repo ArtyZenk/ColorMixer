@@ -13,6 +13,8 @@ class ColorMixerViewController: UIViewController {
     private lazy var resultView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .red
+        view.layer.cornerRadius = 15
         return view
     }()
     
@@ -83,20 +85,38 @@ class ColorMixerViewController: UIViewController {
         return slider
     }()
     
-    private lazy var greenSlider: UISlider = {
+    private lazy var blueSlider: UISlider = {
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
     
+    private lazy var sliderStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        return stack
+    }()
+    
+    private lazy var parentsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        return stack
+    }()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupHierarch()
-        setupLayout()
+        
+        
         setupView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        setupLayout()
     }
 }
 
@@ -109,10 +129,31 @@ extension ColorMixerViewController {
         titlesStack.addArrangedSubview(greenLabel)
         titlesStack.addArrangedSubview(blueLabel)
         
+        valueStack.addArrangedSubview(redValueLabel)
+        valueStack.addArrangedSubview(greenValueLabel)
+        valueStack.addArrangedSubview(blueValueLabel)
+        
+        sliderStack.addArrangedSubview(redSlider)
+        sliderStack.addArrangedSubview(greenSlider)
+        sliderStack.addArrangedSubview(blueSlider)
+        
+        parentsStack.addArrangedSubview(titlesStack)
+        parentsStack.addArrangedSubview(valueStack)
+        parentsStack.addArrangedSubview(sliderStack)
+        
+        NSLayoutConstraint.activate([
+            resultView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resultView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            resultView.widthAnchor.constraint(equalToConstant: 300),
+            resultView.heightAnchor.constraint(equalToConstant: 300)
+
+        ])
         
     }
     
     private func setupView() {
         view.backgroundColor = .blue
+        view.addSubview(resultView)
+//        view.addSubview(parentsStack)
     }
 }
